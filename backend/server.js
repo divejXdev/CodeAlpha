@@ -6,9 +6,6 @@ const path = require('path');
 
 dotenv.config();
 
-console.log("ENV:", process.env.MONGO_URI);
-console.log("PORT:", process.env.PORT);
-
 connectDB();
 
 const app = express();

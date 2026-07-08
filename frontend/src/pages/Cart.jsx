@@ -19,6 +19,10 @@ const Cart = () => {
     }
   };
 
+  const handleImageError = (event) => {
+    event.currentTarget.src = '/images/product-fallback.svg';
+  };
+
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
 
   return (
@@ -31,10 +35,10 @@ const Cart = () => {
           <div className="cart-items">
             {cartItems.map((item) => (
               <div key={item.productId} className="cart-item">
-                <img src={item.imageUrl} alt={item.name} className="cart-item-image" />
+                <img src={item.imageUrl} alt={item.name} className="cart-item-image" onError={handleImageError} />
                 <div className="cart-item-details">
                   <h4>{item.name}</h4>
-                  <p>₹{item.price}</p>
+                  <p>${item.price}</p>
                   <div className="qty-controls">
                     <button onClick={() => handleUpdateQty(item, item.qty - 1)}>-</button>
                     <span>{item.qty}</span>
@@ -46,7 +50,7 @@ const Cart = () => {
             ))}
           </div>
           <div className="cart-summary">
-            <h3>Total: ₹{totalPrice.toFixed(2)}</h3>
+            <h3>Total: ${totalPrice.toFixed(2)}</h3>
             <button onClick={() => navigate('/checkout')} className="btn btn-checkout">Proceed to Checkout</button>
           </div>
         </div>

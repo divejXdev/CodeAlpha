@@ -36,7 +36,7 @@ const Profile = () => {
       }
     };
     fetchMyOrders();
-  }, [user, navigate]);
+  }, [user, navigate, logout]);
 
   const handleLogout = () => {
     logout();
@@ -75,15 +75,15 @@ const Profile = () => {
               <div>
                 <p style={{ color: '#a1a1aa', fontSize: '0.9rem', marginBottom: '5px' }}>Order ID: <span style={{ color: '#fff' }}>{order._id}</span></p>
                 <p style={{ color: '#a1a1aa', fontSize: '0.9rem', marginBottom: '5px' }}>Placed On: <span style={{ color: '#fff' }}>{new Date(order.createdAt).toLocaleDateString()}</span></p>
-                <p style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Total: <strong style={{ color: '#10b981' }}>₹{order.totalAmount.toFixed(2)}</strong></p>
+                <p style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Total: <strong style={{ color: '#10b981' }}>${order.totalPrice.toFixed(2)}</strong></p>
               </div>
               <div>
                 <span style={{ 
-                  background: order.status === 'Delivered' ? 'rgba(16,185,129,0.1)' : order.status === 'Shipped' ? 'rgba(59,130,246,0.1)' : 'rgba(245,158,11,0.1)', 
-                  color: order.status === 'Delivered' ? '#10b981' : order.status === 'Shipped' ? '#3b82f6' : '#f59e0b',
+                  background: order.isDelivered ? 'rgba(16,185,129,0.1)' : 'rgba(245,158,11,0.1)', 
+                  color: order.isDelivered ? '#10b981' : '#f59e0b',
                   padding: '8px 16px', borderRadius: '20px', fontWeight: 'bold' 
                 }}>
-                  {order.status}
+                  {order.isDelivered ? 'Delivered' : 'Pending'}
                 </span>
               </div>
             </div>

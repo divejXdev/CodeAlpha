@@ -15,7 +15,7 @@ const OrderSuccess = () => {
 
   return (
     <div style={containerStyle}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '20px', color: '#10b981' }}>Payment Successful!</h2>
+      <h2 style={{ fontSize: '2.5rem', marginBottom: '20px', color: '#10b981' }}>Order Placed Successfully!</h2>
       <p style={{ color: '#a1a1aa', fontSize: '1.2rem', marginBottom: '40px' }}>
         Thank you for your order. We have securely received your payment and will process your shipment shortly.
       </p>

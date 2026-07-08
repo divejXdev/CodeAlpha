@@ -23,7 +23,7 @@ const AdminOrders = () => {
       body: JSON.stringify({ status })
     });
     if (res.ok) {
-      setOrders(orders.map(order => order._id === id ? { ...order, status } : order));
+      setOrders(orders.map(order => order._id === id ? { ...order, isDelivered: status === 'Delivered' } : order));
     }
   };
 
@@ -45,12 +45,12 @@ const AdminOrders = () => {
             {orders.map(order => (
               <tr key={order._id} style={rowStyle}>
                 <td style={tdStyle}>{order._id.substring(0, 8)}...</td>
-                <td style={tdStyle}>{order.userId?.name || 'Deleted User'}</td>
-                <td style={tdStyle}>₹{order.totalAmount.toFixed(2)}</td>
+                <td style={tdStyle}>{order.user?.name || 'Deleted User'}</td>
+                <td style={tdStyle}>${order.totalPrice.toFixed(2)}</td>
                 <td style={tdStyle}>{new Date(order.createdAt).toLocaleDateString()}</td>
                 <td style={tdStyle}>
                   <select 
-                    value={order.status} 
+                    value={order.isDelivered ? 'Delivered' : 'Pending'} 
                     onChange={(e) => updateStatus(order._id, e.target.value)}
                     style={{ background: '#09090b', color: '#fff', padding: '6px', border: '1px solid #27272a', borderRadius: '4px', outline: 'none' }}
                   >

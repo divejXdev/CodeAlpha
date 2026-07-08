@@ -63,7 +63,7 @@ The server codebase features a seamless fallback mechanic leveraging Node `proce
 3. Connect Repo -> Create a **Web Service**.
 4. Configure Build Command:
    `npm run render-build` 
-   *(This cleanly installs API + UI node_modules then generates `react-scripts build`)*
+   *(This installs backend + frontend dependencies, then generates the frontend production build.)*
 5. Configure Start Command:
    `npm start`
 6. Open **Advanced > Environment Variables** and map your `.env` fields heavily defining `NODE_ENV = production`.
