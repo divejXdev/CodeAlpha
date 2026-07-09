@@ -13,7 +13,8 @@ app.use(
   cors({
     origin: [
       'http://localhost:3000',
-      process.env.FRONTEND_URL,
+      'http://127.0.0.1:3000',
+      'https://code-alpha-pe14qljcn-divej-singhs-projects-502c0b5a.vercel.app',
     ],
     credentials: true,
   })
