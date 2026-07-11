@@ -1,0 +1,3 @@
+const jwt=require('jsonwebtoken'),User=require('./models/User'),multer=require('multer'),path=require('path');
+exports.protect=async(req,res,next)=>{try{const h=req.headers.authorization||'';if(!h.startsWith('Bearer '))throw Error();const u=await User.findById(jwt.verify(h.slice(7),process.env.JWT_SECRET).id);if(!u)throw Error();req.user=u;next()}catch(e){res.status(401).json({message:'Invalid or missing authentication token.'})}};
+exports.upload=multer({storage:multer.diskStorage({destination:(_r,_f,cb)=>cb(null,path.join(__dirname,'uploads')),filename:(_r,f,cb)=>cb(null,Date.now()+'-'+f.originalname.replace(/[^a-zA-Z0-9._-]/g,'_'))}),limits:{fileSize:5*1024*1024},fileFilter:(_r,f,cb)=>cb(null,/^image\/(jpeg|png|webp|gif)$/.test(f.mimetype))});
