@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
 import '../styles/product.css';
 
+
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -17,7 +18,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`/api/products/${id}`);
+        const res = await fetch(API.PRODUCT(id));
         const data = await res.json();
         setProduct(data);
       } catch (error) {

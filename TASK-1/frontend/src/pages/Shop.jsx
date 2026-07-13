@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import "../styles/product.css";
-
-const API_URL =
-  process.env.REACT_APP_API_URL ||
-  "https://shopnest-backend-fp9w.onrender.com";
+import { API } from "../config";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -14,9 +11,9 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        console.log("Fetching:", `${API_URL}/api/products`);
+        console.log("Fetching:", API.PRODUCTS);
 
-        const res = await fetch(`${API_URL}/api/products`);
+        const res = await fetch(API.PRODUCTS);
 
         if (!res.ok) {
           throw new Error(`HTTP Error ${res.status}`);
